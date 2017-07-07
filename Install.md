@@ -1,5 +1,8 @@
 # 注意 #
 
+# This package is not maintained and has been superseded.
+# このパッケージはメンテナンスされていません。新規のインストールを行わないでください。
+
 ## 導入 ##
 
 BEARのインストール／アップデートはPEARコマンドを使って行います。
