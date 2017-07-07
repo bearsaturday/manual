@@ -4,7 +4,7 @@
   * [PHP環境構築](setup_osx.md)
   * [PEAR](user_pear.md)
   * [インストール](Install.md)
-  * [PEARチャネル](http://pear.bear-project.net/)![http://code.google.com/hosting/images/tearoff_icon.gif](http://code.google.com/hosting/images/tearoff_icon.gif)
+  * [PEARチャネル](http://bearsaturday.github.io/pear/)
 
 ### はじめに ###
   * [BEARについて](introduction.md)
@@ -58,13 +58,12 @@
   * [セッションの注意](caution_session.md)
 
 ### APIドキュメント ###
-  * [BEAR doc](http://api.bear-project.net/)[![](http://code.google.com/hosting/images/tearoff_icon.gif)](http://api.bear-project.net/)
+  * ~~BEAR doc~~
 
 ### 絵文字コード ###
-  * [絵文字リファレンス](http://beardemo.bear-project.net/test/emoji/static.php)
-
+  * ~~絵文字リファレンス~~
 ### デモ ###
-  * [BEAR demo](http://code.google.com/p/bear-demo/wiki/top?tm=6)[![](http://code.google.com/hosting/images/tearoff_icon.gif)](http://www.bear-project.net/demo/)
+  * ~~BEAR demo~~
 
 ### Who's using BEAR ? ###
   * [BEARアプリケーション](Whos_Using_BEAR.md)
