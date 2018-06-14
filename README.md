@@ -1,4 +1,12 @@
 ## BEARマニュアル ##
+
+© 2008-2018
+
+### リポジトリ ###
+  * 本体 [bearsaturday/bearsaturday](https://github.com/bearsaturday/BEAR.Saturday)
+  * スケルトン [bearsaturday/skeleton](https://github.com/bearsaturday/BEARSaturday.Skeleton)
+  * デモサイト [bearsaturday/beardemo.local](https://github.com/bearsaturday/beardemo.local)
+
 ### インストールと設定 ###
 
   * [PHP環境構築](setup_osx.md)
@@ -71,6 +79,7 @@
 ### About US ###
   * [コンタクト](contact.md)
   
+
 --
 Automatically exported from code.google.com/p/bear-project
 
