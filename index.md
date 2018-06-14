@@ -55,6 +55,7 @@
   * [AJAX](ajax.md)
 ### 注意 ###
   * [マイグレーションガイド](migration.md)
+  * [PHP7 + composerへの移行](mig_0_10.md)
   * [セッションの注意](caution_session.md)
 
 ### APIドキュメント ###
