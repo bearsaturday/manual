@@ -13,7 +13,7 @@
   * [PEAR](user_pear.md)
   * [インストール](Install.md)
   * [PEARチャネル](http://bearsaturday.github.io/pear/)
-  * [PEARプロジェクトからのマイグレーションhttps://github.com/bearsaturday/manual/blob/wiki/mig_0_10.md
+  * [PEARプロジェクトからのマイグレーション](https://github.com/bearsaturday/manual/blob/wiki/mig_0_10.md)
 
 ### はじめに ###
   * [BEARについて](introduction.md)
