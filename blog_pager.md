@@ -26,7 +26,7 @@ class App_Ro_Post_Pager extends App_Ro_Post
         $this->_queryConfig['pager'] = 1; // DBページャー利用
         $this->_queryConfig['perPage'] = 10; // １ページ毎のアイテム数
         $id = array('id', 'id', '+');
-        $date = array('created_at', 'date', '-');
+        $date = array('created', 'date', '-');
         $this->_queryConfig['sort'] = array($id, $date); // ソート
         $this->_query = BEAR::factory('BEAR_Query', $this->_queryConfig);
     }
