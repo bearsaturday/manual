@@ -54,14 +54,18 @@ $ sudo make install
 ### portコマンドでパスが通ってなければパスを通す ###
 
 新規ターミナルで下記が実行できるなら問題なし
+
 ```
  $ port help
 ```
+
 パスが通ってないなら~/.bash\_profileを編集
+
 ```
 export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 export MANPATH="/opt/local/share/man:$MANPATH"
 ```
+
 ターミナルを新規に開いてport helpを試す
 
 ### macports更新 ###
@@ -81,12 +85,13 @@ $ sudo port install mysql5-devel mysql5-server-devel
 ```
 
 **MySQL5.0の場合
+
 ```
 $ sudo port install mysql5 mysql5-server
-```**
-
+```
 
 ライブラリ（GD、iMagick, Cairo, キャッシュ、YAML)とphpのインストール
+
 ```
 $ sudo port install memcached syck ImageMagick +jpeg2+mpeg+perl+q32+no_x11 GraphicsMagick cairo +no_x11
 $ sudo port install php5 +apache2+pear
@@ -94,24 +99,29 @@ $ cd /opt/local/apache2/modules
 $ sudo /opt/local/apache2/bin/apxs -a -e -n "php5" libphp5.so
 ```
 
-
 ### php拡張のインストール ###
+
 ```
 sudo port list php5-*
 ```
+
 でインストール可能なPHP5拡張パッケージを確認
 
 拡張インストール例
+
 ```
 sudo port install php5-apc php5-exif php5-ftp php5-gd php5-http php5-iconv php5-imagick php5-mbstring php5-mcrypt php5-memcache php5-mysql php5-openssl php5-pcntl php5-readline php5-sockets php5-sqlite3 php5-syck php5-tidy php5-uploadprogress  php5-zip
 ```
+
 デバッガー
+
 ```
 sudo port install php5-xdebug
 ```
 
 ### 起動スクリプトをロード ###
 -wで起動時もロードされる
+
 ```
 $ sudo launchctl load -w /Library/LaunchDaemons/org.macports.mysql5.plist
 $ sudo launchctl load -w /Library/LaunchDaemons/org.macports.apache2.plist
@@ -123,6 +133,7 @@ $ sudo launchctl load -w /Library/LaunchDaemons/org.macports.memcached.plist
 
   * php5/ImageMagickはで必要な拡張をvariantsで把握して指定します。 例 $ port variants php5
   * コンパイルオプションを変更したいときはeditで編集します。 例$port edit php5
+
 > " 以前mysqlのvariantsだったserverは独立したパッケージになりました。PHPの拡張もpeclよりphp5-**パッケージの方が安定しています**
 
 ### トラブルシューティング ###
@@ -133,7 +144,8 @@ $ sudo launchctl load -w /Library/LaunchDaemons/org.macports.memcached.plist
   * ソースインストールで問題があるならdmg版で再インストールしてみる ※1
   * variantns（+ipcなど）を減らしてみる
   * sudo port edit php5などとしてconfigureを変更してみる
-  * ソースのチェックサムエラーが出ることがある。
+* ソースのチェックサムエラーが出ることがある。
+
 ```
 Error: Checksum (md5) mismatch for php-5.3.0.tar.bz2
 Error: Checksum (sha1) mismatch for php-5.3.0.tar.bz2
@@ -141,23 +153,27 @@ Error: Checksum (rmd160) mismatch for php-5.3.0.tar.bz2
 Error: Target org.macports.checksum returned: Unable to verify file checksums
 Error: Status 1 encountered during processing.
 ```
+
 この場合はネットからphp-5.3.0.tar.bz2を探してソースを置き換える。
 ソースディレクトリはSpotlightで検索。php5は（/opt/local/var/macports/distfiles/php5）
 
 ### configureオプションを変更 ###
+
 例）php5に　-enable-memory-limitをつける。※実際はこのオプションは5.2.1から常にonになっているで不要
 
 ```
 $ sudo port edit php5
 ```
+
 myvar variantとして以下を追記
+
 ```
 variant myvar {
     configure.args-append \
         --enable-memory-limit
 }
-
 ```
+
 上記でつくったものは+myvarバリアントでインストールできる。
 
 ### 確認 ###
@@ -191,7 +207,6 @@ $ sudo cp /opt/local/apache2/conf/extra/httpd-vhosts.conf /opt/local/apache2/con
 /opt/local/apache2/conf/extra/my-httpd-vhosts.confを編集。既存のものを消去して下記のものに置き換える。
 
 ```
-
 #
 # Use name-based virtual hosting.
 #
@@ -209,7 +224,6 @@ NameVirtualHost *:80
   ServerName localhost
   VirtualDocumentRoot /var/www/%0/htdocs
 </VirtualHost>
-
 ```
 
 ## /etc/hostsファイル編集 ##
@@ -217,13 +231,16 @@ NameVirtualHost *:80
 <プロジェクト>をlocalhostに向ける為にhostsファイルを編集する.
 
 > 例) <プロジェクト>がapp.sample1 -4 の４つのプロジェクトの場合
+
 ```
 $ sudo vi /etc/hosts
 ```
+
 ```
 127.0.0.1    localhost 
 127.0.0.1    app.sample1 app.sample2 app.sample3 app.sample4
 ```
+
 ※スペース区切りで追加
 ※hostsファイルの変更後にapacheリスタート等は不要
 
@@ -260,8 +277,8 @@ php.iniを編集
 apcを開発のため一時的に外す。（パースエラーで"真っ白"がある場合がある）
 パーケージでいれたエクステンションは/opt/local/var/db/以下のファイルで設定する。
 
-
 ### php.iniをweb用とCLI用と２種類用意 ###
+
 web(mod\_php)用php.ini
 
 ```
@@ -269,6 +286,7 @@ $ sudo cp /etc/php.ini.default /opt/local/etc/php.ini
 ```
 
 CLI用php.ini
+
 ```
 $ sudo cp /etc/php.ini.default /opt/local/etc/php-cli.ini
 ```
@@ -307,27 +325,32 @@ error\_reporting = E\_ALL
 }}
 に変更。
 PHP5.3でE\_DEPRECATEDを抑制する場合は
+
 ```
 error_reporting = E_ALL & ~E_USER_DEPRECATED
 ```
 
 ## MYSQL設定 ##
 初期化
+
 ```
 $ sudo -u mysql mysql_install_db5
 ```
 #### 再起動 ####
+
 ```
 $ sudo /opt/local/share/mysql5/mysql/mysql.server start
 ```
 
 ### パスワード設定 ###
+
 ```
 /opt/local/lib/mysql5/bin/mysqladmin -u root password 'new-password'
 /opt/local/lib/mysql5/bin/mysqladmin -u root -h localhost password 'new-password'
 ```
 
 ### 実行してみる ###
+
 ```
 cd /opt/local ; sudo /opt/local/lib/mysql5/bin/mysqld_safe &
 
@@ -354,6 +377,7 @@ $ sudo cp /opt/local/share/mysql5/mysql/my-small.cnf /etc/my.cnf
 デフォルトキャラクタの設定­をmy.confに追記。console.appでログが確認しやすいように/var/log/opt/にクエリーログを保存設定
 
 /etc/my.cnf
+
 ```
 [client]
 default-character-set = utf8
@@ -377,10 +401,10 @@ default-character-set = utf8
 ```
 
 ### MySQL再起動 ###
+
 ```
 $ sudo /opt/local/share/mysql5/mysql/mysql.server restart
 ```
-
 
 ## ソケットファイルのパスの設定 ##
 
@@ -470,6 +494,7 @@ my.cnfに誤りがあり指定しているディレクトリやファイルを�
 
 
 どうしてもうまくいかない場合はuninstall, installをやり直してみる。
+
 ```
 sudo port uninstall mysql5
 sudo rm -rf /opt/local/var/db/mysql5
