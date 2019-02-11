@@ -15,7 +15,8 @@ BEARはページ指向のフレームワークです。htdocs/にあるページ
 
 ページファイル
 htdocs/hello.php
-```
+
+```php
 <?php 
 
  require_once('App.php');
@@ -43,7 +44,7 @@ App_Main::run('Page_Hello');
 
 テンプレートファイル
 App/views/pages/hello.tpl
-```
+```html
  <html>
  <head>
    <title>{$message}</title>
@@ -62,18 +63,19 @@ App/views/pages/hello.tpl
 
 ２つのPHP Doc型のコメントはPHP Documentor用のコメントです。この形式で書いておきPHP Documentorを使えばページクラスAPIのドキュメントが簡単にできます。ページ単位で処理の内容を把握するのに役立ちます。ファイル全体で1 つ、ページクラスファイルで1つと２つ必要です。ドキュメント不要の場合には省略できます。
 
-```
+```php
 require_once('App.php');
 ```
 
 App.php内でフレームワークの初期化を行います。全てのページファイルに記述します。
 
-```
+```php
 class Page_Hello extends App_Page
 ```
+
 ページクラス定義です。App\_Pageはアプリケーション共通ページクラスです。
 
-```
+```php
 public function onInit(array $config){
 ...
 }
@@ -81,7 +83,7 @@ public function onInit(array $config){
 
 ページクラスの初期化です。一般的な表示のページではonInit()でリソースアクセス(read)を行い、ページにそのリソースをsetします。表示以外のすべての処理（たとえばフォーム）はここに記述します。
 
-```
+```php
 function onOutput()
 {
     $this->display(); // このページでは$this->display('hello/world.tpl');と同じ
@@ -89,9 +91,11 @@ function onOutput()
 ```
 
 このhello.phpでは最上位のBEAR\_Pageクラスで定義されている上記のonOutputハンドラが省略されています。 display()はテンプレートのファイルパスを引数としてもちますが、省略した場合はページクラス名から生成されます。クラス名のアンダースコアを /（スラッシュ）にしたものがテンプレートファイルパスになります。
-```
+
+```php
 App_Main::run('Page_Hello');
 ```
+
 ページクラス名を指定してBEAR\_Main::run()で実行します。
 
 ### まとめ ###
